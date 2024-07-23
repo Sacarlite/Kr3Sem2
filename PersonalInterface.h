@@ -5,3 +5,4 @@ void ShowInputOption();//Функция вывода на консоль способа ввода данных
 void ShowGreetings();//Функция вывода приветствия
 void ShowOutputType();//Функция вывода на консоль способа вывода итоговых данных
 void ShowOutputChoise();//Функция вывода на консоль выбора файла
+void ShowAlghoritmChoise();//Функция вывода выбора алгоритма

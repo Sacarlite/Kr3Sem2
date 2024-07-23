@@ -35,8 +35,27 @@ int main()
 			ConsoleOutput(text); //Вывод считанных данных на консоль
 			break;
 		}
-		std::vector<std::string> newText = CompressionAlghoritm(text);
-		std::cout << "Сжатый текст" << std::endl;
+		ShowAlghoritmChoise();
+		userChoice = GetChoise(); //Ввод пользовательского решения
+		std::vector<std::string> newText;//Создание вектора нового текста
+		switch (userChoice) //switch выбора консольного ввода или файлового
+		{
+		case (Compress):
+			newText = CompressionAlghoritm(text); //Ввод данных об апартаментов с консоли 
+			break;
+		case (Decompress):
+			try {
+				newText = DecompressionAlghoritm(text); //Ввод данных об апартаментов с консоли 
+			}
+			catch (std::exception) {
+				std::cout << "Произошла ошибка при восстановлении текста" << std::endl;
+				text.clear(); //Чистка вектора животных
+				newText.clear(); //Чистка вектора животных
+				continue;
+			}
+			break;
+		}
+		std::cout << "Итоговый текст" << std::endl;
 		ConsoleOutput(newText); //Вывод считанных данных на консоль
 			ShowOutputType(); //Вывод сообщения об сохранении выбранных данных в файл
 			userChoice = GetChoise(); // Ввод пользовательского решения

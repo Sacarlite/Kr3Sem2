@@ -46,3 +46,11 @@ void ShowOutputChoise()
 	std::cout << "2)Ввести новое имя(путь к фаилу)" << std::endl;
 	std::cout << "Ввод:";
 }
+
+void ShowAlghoritmChoise()
+{
+	std::cout << "Какой алгоритм вы хотите использовать?" << std::endl;
+	std::cout << "1)Сжать" << std::endl;
+	std::cout << "2)Восстановить" << std::endl;
+	std::cout << "Ввод:";
+}
