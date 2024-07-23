@@ -13,20 +13,12 @@ public:
 private:
 	std::string message;//Поле хранящее сообщение об ошибке
 };
-void WriteText(std::vector<std::string> text, std::vector<std::string> newText,std::string fileName)//Функция записи данных квартир в фаил
+void WriteText(std::vector<std::string> newText,std::string fileName)//Функция записи данных квартир в фаил
 {
 	std::ofstream  out;//Создания потока записи в фаил
 	out.exceptions(std::ofstream::badbit | std::ofstream::failbit);//Установка побитовых флагов ошибок фаилового взаимодействия
 	try {
 		out.open(fileName);//открытие фаила для записи
-		out << "Исходный текст:" << std::endl;
-		//Запись данных
-		for (auto i = text.begin(); i < text.end(); ++i)//Перебор вектора квартир при помощи итератора
-		{
-			out << *i;//Запись строки в файл
-		}
-		out << std::endl;
-		out << "Сжатый текст:" << std::endl;
 		for (auto i = newText.begin(); i < newText.end(); ++i)//Перебор вектора квартир при помощи итератора
 		{
 			out << *i;//Запись строки в файл
@@ -39,7 +31,7 @@ void WriteText(std::vector<std::string> text, std::vector<std::string> newText,s
 		throw FileWriteException("Невозможно записать данные в файл. Повторите попытку.");//Выброс пользовательской ошибки фаилового вывода
 	}
 }
-void FileOutput(std::vector<std::string> text,std::vector<std::string> newText)
+void FileOutput(std::vector<std::string> newText)
 {
 	std::ifstream out2;//Создания потока чтения из фаила
 	std::string fileName;//Переменная имени или пути фаила
@@ -72,7 +64,7 @@ void FileOutput(std::vector<std::string> text,std::vector<std::string> newText)
 			if (userChoice == Yes) {
 				
 				out2.close();//Закрытия потока чтения из фаила
-				WriteText(text,newText, fileName);//Функция записи в фаил
+				WriteText(newText, fileName);//Функция записи в фаил
 			}
 			else {
 				out2.close();//Закрытия потока чтения из фаила
@@ -82,7 +74,7 @@ void FileOutput(std::vector<std::string> text,std::vector<std::string> newText)
 		}
 		catch (const std::exception&) {
 			try {
-				WriteText(text, newText, fileName);//Функция записи в фаил
+				WriteText(newText, fileName);//Функция записи в фаил
 				break;
 			}
 			catch ( FileWriteException err) {//Обработка ошибки взаимодействия с фаилом

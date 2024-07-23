@@ -49,32 +49,37 @@ std::vector<std::string> DecompressionAlghoritm(std::vector<std::string> text)
 {
 	std::vector<std::string> normalText;
 	for (auto i = text.begin(); i < text.end(); i++) {
-		std::string tmp_str = *i;
-		for (auto j = tmp_str.begin(); j < tmp_str.end(); j++) {
-			auto pivot = j;//Итератор на опорный элемент
-			
-			if (*pivot == '{' && *(pivot+2) == ',') {
-				char  insertChar = *(pivot+1);
-				int counter = 0;
-				std::string num;
-				for (auto k = pivot+3; k < tmp_str.end(); k++) {
-					if (isdigit(*k)) {
-						num.push_back(*k);
-					}
-					else if(*k =='}'){
-						j = k+1;
-						tmp_str.erase(pivot, k+1);
-						tmp_str.insert(pivot, std::stoi(num), insertChar);
-						break;
-					}
-					else if((!isdigit(*k)&& *k != '}')|| k== tmp_str.end()-1){
-						j = k;
-						break;
-					}
-				}
+		std::string tmpString = *i;
+		int pivot = 0;
+		int index = 0;
+		while (tmpString.find_first_of("{", pivot) != std::string::npos) {
+			index = tmpString.find_first_of("{", pivot);
+			pivot = index;
+			char insertedChar = tmpString[pivot + 1];
+			if (tmpString.find_first_of("}", pivot) == std::string::npos) {
+				break;
 			}
+			if (tmpString[pivot + 2] != ',') {
+				pivot++;
+				continue;
+			}
+			index = tmpString.find_first_of("}", pivot);
+			int numberSize = index - (pivot + 3);//Получаем длинну числа
+			auto num = tmpString.substr(pivot + 3, numberSize);
+			int number = 0;
+			try {
+				number = std::stoi(num);
+			}
+			catch (std::exception) {
+				pivot++;
+				continue;
+			}
+			tmpString.erase(pivot, numberSize+4);
+			tmpString.insert(pivot, number, insertedChar);
+			pivot = pivot + number;
 		}
-		normalText.push_back(tmp_str);
+		normalText.push_back(tmpString);
 	}
+
 	return normalText;
 }

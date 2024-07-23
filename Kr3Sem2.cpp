@@ -61,7 +61,7 @@ int main()
 			userChoice = GetChoise(); // Ввод пользовательского решения
 			if (userChoice == Yes)
 			{
-				FileOutput(text, newText); //Сохранение итогового массива в фаил
+				FileOutput(newText); //Сохранение итогового массива в фаил
 			}
 		text.clear(); //Чистка вектора животных
 		newText.clear(); //Чистка вектора животных
