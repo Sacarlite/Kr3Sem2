@@ -19,6 +19,8 @@ std::vector<std::string> CompressionAlghoritm(std::vector<std::string> text)//‘Û
 		int counter=0;
 		auto iter = tmp_str.begin();
 		for (auto j = tmp_str.begin(); j < tmp_str.end(); j++) {
+			auto a = *iter;
+			auto b = *j;
 			if (*iter==*j) {
 				counter++;
 			}
@@ -28,9 +30,6 @@ std::vector<std::string> CompressionAlghoritm(std::vector<std::string> text)//‘Û
 				added_string.push_back(',');
 				added_string.insert(added_string.length(), std::to_string(counter));
 				added_string.push_back('}');
-				if (j == tmp_str.end() - 1) {
-					break;
-				}
 				iter = j;
 				counter = 1;
 			}

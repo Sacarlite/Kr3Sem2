@@ -13,13 +13,13 @@ public:
 private:
 	std::string message;//Поле хранящее сообщение об ошибке
 };
-void WriteText(std::vector<std::string> newText,std::string fileName)//Функция записи данных квартир в фаил
+void WriteText(std::vector<std::string> newText,std::string fileName)//Функция записи данных в фаил
 {
 	std::ofstream  out;//Создания потока записи в фаил
 	out.exceptions(std::ofstream::badbit | std::ofstream::failbit);//Установка побитовых флагов ошибок фаилового взаимодействия
 	try {
 		out.open(fileName);//открытие фаила для записи
-		for (auto i = newText.begin(); i < newText.end(); ++i)//Перебор вектора квартир при помощи итератора
+		for (auto i = newText.begin(); i < newText.end(); ++i)//Перебор вектора строк при помощи итератора
 		{
 			out << *i;//Запись строки в файл
 		}

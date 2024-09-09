@@ -15,6 +15,7 @@ std::vector<std::string> ConsoleInput()
                 if (str.empty()) {//Если строка пуста то цикл прекращается
                     break;
                 }
+                str.push_back('\n');//Добавление символа конца строки
                 text.push_back(str);//Добавление строки в конец вектора
             }
             if (text.empty()) {

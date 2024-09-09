@@ -40,6 +40,7 @@ std::vector<std::string> FileInput()
 				if (str.empty()) {//≈сли строка пуста то цикл прекращаетс€
 					break;
 				}
+				str.push_back('\n');
 				text.push_back(str);//ƒобавление строки в конец вектора
 			}
 			if (text.empty()) {

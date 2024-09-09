@@ -7,7 +7,7 @@
 void ConsoleOutput(std::vector<std::string> text)
 {
 	std::cout << "Текст:" << std::endl;
-	for (auto i = text.begin(); i < text.end(); ++i)//Перебор вектора квартир при помощи итератора 
+	for (auto i = text.begin(); i < text.end(); ++i)//Перебор вектора строк при помощи итератора 
 	{
 		std::cout << *i<<std::endl;
 	}

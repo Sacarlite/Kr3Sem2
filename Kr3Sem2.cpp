@@ -4,7 +4,7 @@
 #include <vector>//Библеотека подключения вектора
 #include "MainMenu.h"//Подключение HeaderFile с Enum-меню
 #include "Checks.h"//Подключение HeaderFile с проверками пользовательского ввода
-#include "ConsoleOutput.h"//Подключение HeaderFile с выводом списка животных на консоль
+#include "ConsoleOutput.h"//Подключение HeaderFile с выводом текста на консоль
 #include "FileInput.h"//Подключение HeaderFile с файловым вводом
 #include "FileOutput.h"//Подключение HeaderFile с файловым выводом
 #include "Input.h"//Подключение HeaderFile с вводом с консоли
@@ -18,7 +18,7 @@ int main()
 	SetConsoleCP(1251); //функции для настройки локализации в строковых переменных при вводе
 	SetConsoleOutputCP(1251); //функции для настройки локализации в строковых переменных при выводе
 	int userChoice = 0; //Переменная пользовательского ввода
-	std::vector<std::string> text; //Вектор вводных животных
+	std::vector<std::string> text; //Вектор вводных строк
 	ShowGreetings(); //Вывод приветствия
 	ShowTask(); //Вывод задания
 	do
@@ -28,10 +28,10 @@ int main()
 		switch (userChoice) //switch выбора консольного ввода или файлового
 		{
 		case (ConsoleDataInput):
-			text = ConsoleInput(); //Ввод данных об апартаментов с консоли 
+			text = ConsoleInput(); //Ввод текста с консоли 
 			break;
 		case (FileDataInput):
-			text = FileInput(); //Ввод данных об апартаментов из файла
+			text = FileInput(); //Ввод текста из файла
 			ConsoleOutput(text); //Вывод считанных данных на консоль
 			break;
 		}
@@ -41,30 +41,30 @@ int main()
 		switch (userChoice) //switch выбора консольного ввода или файлового
 		{
 		case (Compress):
-			newText = CompressionAlghoritm(text); //Ввод данных об апартаментов с консоли 
+			newText = CompressionAlghoritm(text); //Сжатие текста
 			break;
 		case (Decompress):
 			try {
-				newText = DecompressionAlghoritm(text); //Ввод данных об апартаментов с консоли 
+				newText = DecompressionAlghoritm(text); //Восстановление текста 
 			}
 			catch (std::exception) {
 				std::cout << "Произошла ошибка при восстановлении текста" << std::endl;
-				text.clear(); //Чистка вектора животных
-				newText.clear(); //Чистка вектора животных
+				text.clear(); //Чистка вектора исходных строк
+				newText.clear(); //Чистка вектора модифицированного текста
 				continue;
 			}
 			break;
 		}
 		std::cout << "Итоговый текст" << std::endl;
-		ConsoleOutput(newText); //Вывод считанных данных на консоль
+		ConsoleOutput(newText); //Вывод модифицированных данных на консоль
 			ShowOutputType(); //Вывод сообщения об сохранении выбранных данных в файл
 			userChoice = GetChoise(); // Ввод пользовательского решения
 			if (userChoice == Yes)
 			{
-				FileOutput(newText); //Сохранение итогового массива в фаил
+				FileOutput(newText); //Сохранение модифицированного текста в фаил
 			}
-		text.clear(); //Чистка вектора животных
-		newText.clear(); //Чистка вектора животных
+			text.clear(); //Чистка вектора исходных строк
+			newText.clear(); //Чистка вектора модифицированного текста
 		std::cout << "Нажмите Esc чтобы завершить работу программы." << std::endl;
 		std::cout << "Нажмите Enter чтобы продолжить." << std::endl;
 		userChoice = _getch(); //Ввод кода символа введённого с клавиатуры
