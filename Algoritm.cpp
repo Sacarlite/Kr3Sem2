@@ -19,8 +19,6 @@ std::vector<std::string> CompressionAlghoritm(std::vector<std::string> text)//Фу
 		int counter=0;
 		auto iter = tmp_str.begin();
 		for (auto j = tmp_str.begin(); j < tmp_str.end(); j++) {
-			auto a = *iter;
-			auto b = *j;
 			if (*iter==*j) {
 				counter++;
 			}
@@ -44,7 +42,7 @@ std::vector<std::string> CompressionAlghoritm(std::vector<std::string> text)//Фу
 	return compressedText;
 }
 
-std::vector<std::string> DecompressionAlghoritm(std::vector<std::string> text)
+std::vector<std::string> DecompressionAlghoritm(std::vector<std::string> text)//Функция декомпрессии
 {
 	std::vector<std::string> normalText;
 	for (auto i = text.begin(); i < text.end(); i++) {
